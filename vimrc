@@ -1,1 +1,0 @@
-/home/armando/.vimrc
