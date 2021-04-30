@@ -1,4 +1,4 @@
 " Important!!
-source myplugins.vim
-source mysettings.vim
-source mycoc.vim
+source  $MY_CUSTOM_VIM/myplugins.vim 
+source  $MY_CUSTOM_VIM/mysettings.vim 
+source  $MY_CUSTOM_VIM/mycoc.vim 
