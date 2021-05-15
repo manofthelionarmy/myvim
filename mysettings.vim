@@ -4,13 +4,15 @@ endif
  
 " For dark version.
 set background=dark
-
 " Set contrast.
 " This configuration option should be placed before `colorscheme everforest`.
 " Available values: 'hard', 'medium'(default), 'soft'
 let g:everforest_background = 'soft'
 let g:everforest_transparent_background=1
-colorscheme everforest
+colorscheme gruvbox
+if g:colors_name != "everforest"
+  hi Normal guibg=NONE ctermbg=NONE
+endif
 set number
 set hlsearch
 " Airline
@@ -57,3 +59,6 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
+
+" Dev icons
+let g:airline_powerline_fonts = 1
