@@ -1,3 +1,4 @@
+set encoding=UTF-8
 if has('termguicolors')
   set termguicolors
 endif
@@ -15,6 +16,7 @@ if g:colors_name != "everforest"
 endif
 set number
 set hlsearch
+set cursorline
 " Airline
 let g:airline_powerline_fonts = 1
 "Rainbow Parenthesis
