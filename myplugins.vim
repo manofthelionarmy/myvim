@@ -21,4 +21,6 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+Plug 'alvan/vim-closetag'
+Plug 'mattn/emmet-vim'
 call plug#end()
