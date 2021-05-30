@@ -23,4 +23,5 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'alvan/vim-closetag'
 Plug 'mattn/emmet-vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
