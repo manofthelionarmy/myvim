@@ -1,5 +1,5 @@
 " Coc
-let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-tsserver', 'coc-go', 'coc-sh', 'coc-yaml', 'coc-snippets', 'coc-html', 'coc-prettier', 'coc-css']
+let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-tsserver', 'coc-go', 'coc-sh', 'coc-yaml', 'coc-snippets', 'coc-html', 'coc-prettier', 'coc-css', "coc-ccls"]
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -166,3 +166,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" Import so coc auto imports feature can work for go
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
