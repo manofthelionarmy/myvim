@@ -8,12 +8,7 @@ set background=dark
 " Set contrast.
 " This configuration option should be placed before `colorscheme everforest`.
 " Available values: 'hard', 'medium'(default), 'soft'
-let g:everforest_background = 'hard'
-let g:everforest_transparent_background=1
-colorscheme dracula
-if g:colors_name != "everforest"
-  hi Normal guibg=NONE ctermbg=NONE
-endif
+colorscheme gruvbox
 " set number
 set number relativenumber
 set hlsearch
@@ -87,20 +82,31 @@ let g:airline_powerline_fonts = 1
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap tn :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+" Commentary key bindings
+nnoremap \/ :Commentary<CR>
+vnoremap \/ :Commentary<CR>
+
+" VsCode stuff?
+nnoremap <Space>j :m .+1<CR>==
+nnoremap <Space>k :m .-2<CR>==
+inoremap <Space>j <Esc>:m .+1<CR>==gi
+inoremap <Space>k <Esc>:m .-2<CR>==gi
+vnoremap <Space>j :m '>+1<CR>gv=gv
+vnoremap <Space>k :m '<-2<CR>gv=gv
 
 " FZF and RG :)
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --theme=TwoDark --color=always --style=header,grid --line-range :300 {}'"
-
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob "!node_modules/" -g "!vendors/" -g "!.git/" -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+" let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --theme=TwoDark --color=always --style=header,grid --line-range :300 {}'"
+" 
+" function! RipgrepFzf(query, fullscreen)
+"   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob "!node_modules/" -g "!vendors/" -g "!.git/" -- %s || true'
+"   let initial_command = printf(command_fmt, shellescape(a:query))
+"   let reload_command = printf(command_fmt, '{q}')
+"   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+" endfunction
+" 
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
