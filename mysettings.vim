@@ -89,12 +89,8 @@ nnoremap \/ :Commentary<CR>
 vnoremap \/ :Commentary<CR>
 
 " VsCode stuff?
-nnoremap <Space>j :m .+1<CR>==
-nnoremap <Space>k :m .-2<CR>==
-inoremap <Space>j <Esc>:m .+1<CR>==gi
-inoremap <Space>k <Esc>:m .-2<CR>==gi
-vnoremap <Space>j :m '>+1<CR>gv=gv
-vnoremap <Space>k :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " FZF and RG :)
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
