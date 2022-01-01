@@ -9,14 +9,45 @@ set background=dark
 " This configuration option should be placed before `colorscheme everforest`.
 " Available values: 'hard', 'medium'(default), 'soft'
 colorscheme gruvbox
+" Transparent background
+hi Normal guibg=NONE ctermbg=NONE
+
 " set number
 set number relativenumber
 set hlsearch
 set cursorline
 set autochdir
+set ignorecase
+set mouse=a
+set pumheight=10
 set lazyredraw
+set splitright
+set smartindent
+set noswapfile
+set scrolloff=8
+set sidescrolloff=8
+set expandtab
+set nowrap
+set numberwidth=4
+set tabstop=2
+set shiftwidth=2
+set undofile
+set smartcase
+set signcolumn="yes:1"
+" let g:indentLine_char_list = ['⇛	']
+" let g:indentLine_color_term = 239
+" let g:indentLine_defaultGroup = 'SpecialKey'
+
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline_stl_path_style = 'short'
+let g:airline_section_c_only_filename = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+let NERDTreeShowHidden=1
+
 "Rainbow Parenthesis
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -27,8 +58,8 @@ let g:go_def_mapping_enabled = 0
 let g:go_code_completion_enabled=0
 let g:go_gopls_enabled = 0
 let g:go_echo_go_info = 0
-let g:go_imports_autosave = 0
-let g:go_fmt_autosave = 0
+let g:go_imports_autosave = 1
+let g:go_fmt_autosave = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
 let g:go_highlight_space_tab_error = 1
@@ -41,11 +72,21 @@ let g:go_highlight_fields = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
 
-" Tabstops per file type
-" tabstop is for tabs, shiftwidth is, i.e., when you hit enter and want to
-" ceate a new line, and the cursor will travel to the shiftwidth
-autocmd BufNewFile,BufRead *.go set tabstop=4 shiftwidth=4
-autocmd BufNewFile,BufRead *.js set tabstop=2 shiftwidth=2
+"Ale
+let g:ale_lint_on_text_changed=0
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_enter=1
+let g:ale_lint_on_save=1
+let g:ale_set_highlights=0
+let g:ale_set_loclist=0
+let g:ale_cursor_detail=0
+let g:ale_set_signs=1
+let g:ale_virtualtext_cursor=0
+let g:ale_change_sign_column_color=0
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
 " Utils Snips is needed for our reacts snippets, and this prevents
 " UltiSnippets from screwing with our tab completion in coc
 let g:UltiSnipsExpandTrigger= "<nop>"
@@ -93,16 +134,27 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " FZF and RG :)
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-" let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --theme=TwoDark --color=always --style=header,grid --line-range :300 {}'"
-" 
-" function! RipgrepFzf(query, fullscreen)
-"   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob "!node_modules/" -g "!vendors/" -g "!.git/" -- %s || true'
-"   let initial_command = printf(command_fmt, shellescape(a:query))
-"   let reload_command = printf(command_fmt, '{q}')
-"   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-" endfunction
-" 
-" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+ let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --theme=TwoDark --color=always --style=header,grid --line-range :300 {}'"
+ 
+ function! RipgrepFzf(query, fullscreen)
+   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob "!node_modules/" -g "!vendors/" -g "!.git/" -- %s || true'
+   let initial_command = printf(command_fmt, shellescape(a:query))
+   let reload_command = printf(command_fmt, '{q}')
+   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+ endfunction
+ 
+ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
+nnoremap <silent> <leader>tt :FZF<CR>
+nnoremap <silent> <leader>tl :RG<CR>
+nnoremap <silent> <leader>tbb :Buffers<CR>
+
+ 
+autocmd BufEnter * silent! lcd %:h:p
+
+nnoremap <silent> <S-l> :bnext<CR>
+nnoremap <silent> <S-h> :bprev<CR>
+
+nnoremap <silent> <leader>c :bd<CR>
