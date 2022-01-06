@@ -27,7 +27,8 @@ set noswapfile
 set scrolloff=8
 set sidescrolloff=8
 set expandtab
-set cursorbind
+set nocursorbind
+set noscrollbind
 set nowrap
 set numberwidth=4
 set tabstop=2
@@ -35,25 +36,25 @@ set shiftwidth=2
 set undofile
 set smartcase
 set signcolumn="yes:1"
-" let g:indentLine_char_list = ['⇛	']
-" let g:indentLine_color_term = 239
-" let g:indentLine_defaultGroup = 'SpecialKey'
 
 " Airline
 let g:airline_powerline_fonts = 1
-" let g:airline_stl_path_style = 'short'
-" let g:airline_section_c_only_filename = 1
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ' |'
-" let g:airline_left_sep=''
+let g:airline_left_sep=' '
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#hunk_symbols = [' ', '柳', ' ']
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline_symbols = {'branch': ' ', 'dirty': ' '}
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_b = airline#section#create(['branch', '  ', '%t'])
+  let g:airline_section_b = airline#section#create(['branch', ' ', '%t'])
   let g:airline_section_c = airline#section#create(['hunks'])
+  " TODO: change these?
   " let g:airline_section_x = airline#section#create([' ', 'filetype', ' '])
   " let g:airline_section_y = airline#section#create([' ', ' ', ' '])
   " let g:airline_section_z = airline#section#create([' ', ' '])
@@ -99,8 +100,6 @@ let g:ale_virtualtext_cursor=0
 let g:ale_change_sign_column_color=0
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
 " Utils Snips is needed for our reacts snippets, and this prevents
 " UltiSnippets from screwing with our tab completion in coc
 " let g:UltiSnipsExpandTrigger= "<nop>"
