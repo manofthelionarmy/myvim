@@ -52,7 +52,7 @@ let g:airline#extensions#hunks#hunk_symbols = [' ', '柳', ' ']
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_b = airline#section#create(['branch', ' ',    '%t'])
+  let g:airline_section_b = airline#section#create(['branch', '  ', '%t'])
   let g:airline_section_c = airline#section#create(['hunks'])
   " let g:airline_section_x = airline#section#create([' ', 'filetype', ' '])
   " let g:airline_section_y = airline#section#create([' ', ' ', ' '])
