@@ -52,7 +52,7 @@ let g:airline_symbols = {'branch': ' ', 'dirty': ' '}
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_b = airline#section#create(['branch', ' ', '%t'])
+  let g:airline_section_b = airline#section#create(['branch', '  ', '%t'])
   let g:airline_section_c = airline#section#create(['hunks'])
   " TODO: change these?
   " let g:airline_section_x = airline#section#create([' ', 'filetype', ' '])
