@@ -1,4 +1,4 @@
-set encoding=UTF-8
+set encoding=utf-8
 if has('termguicolors')
   set termguicolors
 endif
@@ -27,6 +27,7 @@ set noswapfile
 set scrolloff=8
 set sidescrolloff=8
 set expandtab
+set cursorbind
 set nowrap
 set numberwidth=4
 set tabstop=2
@@ -40,11 +41,24 @@ set signcolumn="yes:1"
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_stl_path_style = 'short'
-let g:airline_section_c_only_filename = 1
+" let g:airline_stl_path_style = 'short'
+" let g:airline_section_c_only_filename = 1
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ' |'
+" let g:airline_left_sep=''
+let g:airline#extensions#hunks#hunk_symbols = [' ', '柳', ' ']
+
+function! AirlineInit()
+  let g:airline_section_a = airline#section#create(['mode'])
+  let g:airline_section_b = airline#section#create(['branch', ' ',    '%t'])
+  let g:airline_section_c = airline#section#create(['hunks'])
+  " let g:airline_section_x = airline#section#create([' ', 'filetype', ' '])
+  " let g:airline_section_y = airline#section#create([' ', ' ', ' '])
+  " let g:airline_section_z = airline#section#create([' ', ' '])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
 
 let NERDTreeShowHidden=1
 
@@ -89,7 +103,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 " Utils Snips is needed for our reacts snippets, and this prevents
 " UltiSnippets from screwing with our tab completion in coc
-let g:UltiSnipsExpandTrigger= "<nop>"
+" let g:UltiSnipsExpandTrigger= "<nop>"
 
 let g:tmux_navigator_no_mappings = 1
 if exists('$TMUX')
@@ -116,9 +130,6 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
-
-" Dev icons
-let g:airline_powerline_fonts = 1
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -158,3 +169,10 @@ nnoremap <silent> <S-l> :bnext<CR>
 nnoremap <silent> <S-h> :bprev<CR>
 
 nnoremap <silent> <leader>c :bd<CR>
+
+" Keep cursorline at eye-level
+nnoremap j jzz
+nnoremap k kzz
+nnoremap G Gzz
+nnoremap g; g;zz
+nnoremap g, g,zz
