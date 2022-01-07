@@ -43,16 +43,17 @@ let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ' |'
-let g:airline_left_sep=' '
+let g:airline_left_sep=''
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#hunk_symbols = [' ', '柳', ' ']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
-let g:airline_symbols = {'branch': ' ', 'dirty': ' '}
+let g:airline_symbols = {'branch': '', 'dirty': ''}
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_b = airline#section#create(['branch', '  ', '%t'])
+  let g:airline_section_b = airline#section#create(['branch','  %t'])
+  " let g:airline_section_b = airline#section#create(['branch', '  ', '%t'])
   let g:airline_section_c = airline#section#create(['hunks'])
   " TODO: change these?
   " let g:airline_section_x = airline#section#create([' ', 'filetype', ' '])
@@ -133,7 +134,7 @@ endif
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap tn :NERDTreeToggle<CR>
+nnoremap <silent> tn :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " Commentary key bindings
 nnoremap \/ :Commentary<CR>
@@ -158,6 +159,7 @@ vnoremap K :m '<-2<CR>gv=gv
  command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 nnoremap <silent> <leader>tt :FZF<CR>
+nnoremap <silent> <leader>tc :FZF ~/Desktop/workspace/myvim/<CR>
 nnoremap <silent> <leader>tl :RG<CR>
 nnoremap <silent> <leader>tbb :Buffers<CR>
 
